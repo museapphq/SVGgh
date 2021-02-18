@@ -1884,7 +1884,7 @@ int ParameterCountForOperator(unichar anOperator)
             {
                 CGPoint newPoint = aPathElement->points[0];
                 currentPoint = newPoint;
-                [mutableResult appendFormat:@"M%.1lf %.1lf", currentPoint.x, currentPoint.y];
+                [mutableResult appendFormat:@"M%.2lf %.2lf", currentPoint.x, currentPoint.y];
             }
             break;
             case kCGPathElementAddLineToPoint:
@@ -1892,16 +1892,16 @@ int ParameterCountForOperator(unichar anOperator)
                 CGPoint newPoint = aPathElement->points[0];
                 if(newPoint.x == currentPoint.x)
                 {
-                    [mutableResult appendFormat:@"V%.1lf", newPoint.y];
+                    [mutableResult appendFormat:@"V%.2lf", newPoint.y];
                 }
                 else if(newPoint.y == currentPoint.y)
                 {
                     
-                    [mutableResult appendFormat:@"H%.1lf", newPoint.x];
+                    [mutableResult appendFormat:@"H%.2lf", newPoint.x];
                 }
                 else
                 {
-                    [mutableResult appendFormat:@"L%.1lf %.1lf", newPoint.x, newPoint.y];
+                    [mutableResult appendFormat:@"L%.2lf %.2lf", newPoint.x, newPoint.y];
                 }
                 currentPoint = newPoint;
             }
@@ -1911,7 +1911,7 @@ int ParameterCountForOperator(unichar anOperator)
                 CGPoint controlPoint = aPathElement->points[0];
                 CGPoint newPoint = aPathElement->points[1];
                 
-                [mutableResult appendFormat:@"Q%.1lf %.1lf %.1lf %.1lf", controlPoint.x, controlPoint.y, newPoint.x, newPoint.y];
+                [mutableResult appendFormat:@"Q%.2lf %.2lf %.2lf %.2lf", controlPoint.x, controlPoint.y, newPoint.x, newPoint.y];
                 
                 currentPoint = newPoint;
             }
@@ -1923,7 +1923,7 @@ int ParameterCountForOperator(unichar anOperator)
                 CGPoint newPoint = aPathElement->points[2];
                 
                 
-                [mutableResult appendFormat:@"C%.1lf %.1lf %.1lf %.1lf %.1lf %.1lf", controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, newPoint.x, newPoint.y];
+                [mutableResult appendFormat:@"C%.2lf %.2lf %.2lf %.2lf %.2lf %.2lf", controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, newPoint.x, newPoint.y];
                 
                 currentPoint = newPoint;
             }
