@@ -83,6 +83,11 @@ NS_ASSUME_NONNULL_BEGIN
 * @param aPath the file path to the resource
 */
 -(nullable NSURL*)   absoluteURL:(NSString*)aPath;
+
+/*! @brief parses the SVG for any <path> elements and returns their attributes dictionary
+*/
+-(NSArray<NSDictionary *> *)allPathElements;
+
 @end
 
 NS_ASSUME_NONNULL_END

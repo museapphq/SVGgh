@@ -315,4 +315,41 @@
     return [NSURL fileURLWithPath:fullPath];
 }
 
+- (NSArray<NSDictionary *> *)allPathElements
+{
+    if (self.mutableRoot == nil) {
+        return @[];
+    }
+
+    NSArray *contents = self.mutableRoot[@"contents"];
+
+    if (contents == nil) {
+        return @[];
+    }
+
+    NSMutableArray<NSDictionary *> *pathDicts = NSMutableArray.array;
+
+    for (id element in contents) {
+        if (![element isKindOfClass:[NSDictionary class]]) {
+            continue;
+        }
+        NSDictionary *elementDict = (NSDictionary *)element;
+        NSString *name = elementDict[@"name"];
+
+        if (name == nil || ![name isEqual:@"path"]) {
+            continue;
+        }
+
+        id attributes = elementDict[@"attributes"];
+        if (attributes == nil || ![attributes isKindOfClass:[NSDictionary class]]) {
+            continue;
+        }
+
+        NSDictionary *attributesDict = (NSDictionary *)attributes;
+        [pathDicts addObject:attributesDict];
+    }
+
+    return pathDicts;
+}
+
 @end
